@@ -1,0 +1,15 @@
+{
+  "veiculos": [
+    {"id": "1", "modelo": "Civic", "marca": "Honda", "ano": 2022},
+    {"id": "2", "modelo": "Corolla", "marca": "Toyota", "ano": 2021},
+    {"id": "3", "modelo": "Accord", "marca": "Honda", "ano": 2023},
+    {"id": "4", "modelo": "Camry", "marca": "Toyota", "ano": 2020},
+    {"id": "5", "modelo": "Focus", "marca": "Ford", "ano": 2022},
+    {"id": "6", "modelo": "Fiesta", "marca": "Ford", "ano": 2021},
+    {"id": "7", "modelo": "Altima", "marca": "Nissan", "ano": 2023},
+    {"id": "8", "modelo": "Qashqai", "marca": "Nissan", "ano": 2022},
+    {"id": "9", "modelo": "Golf", "marca": "Volkswagen", "ano": 2021},
+    {"id": "10", "modelo": "Polo", "marca": "Volkswagen", "ano": 2020}
+  ]
+}
+

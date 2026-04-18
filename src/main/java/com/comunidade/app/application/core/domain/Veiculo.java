@@ -1,4 +1,4 @@
-package com.testes.demos_aws.model;
+package com.comunidade.app.application.core.domain;
 
 public class Veiculo {
 

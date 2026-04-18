@@ -1,7 +1,7 @@
-package com.testes.demos_aws.controller;
+package com.comunidade.app.adapters.in.controller;
 
-import com.testes.demos_aws.model.Veiculo;
-import com.testes.demos_aws.service.VeiculoService;
+import com.comunidade.app.application.core.domain.Veiculo;
+import com.comunidade.app.application.ports.in.VeiculoServicePort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,9 +11,9 @@ import java.io.IOException;
 @RequestMapping("/veiculos")
 public class VeiculoController {
 
-    private final VeiculoService service;
+    private final VeiculoServicePort service;
 
-    public VeiculoController(VeiculoService service) {
+    public VeiculoController(VeiculoServicePort service) {
         this.service = service;
     }
 

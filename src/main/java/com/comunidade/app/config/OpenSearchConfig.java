@@ -1,4 +1,4 @@
-package com.testes.demos_aws.configuration;
+package com.comunidade.app.config;
 
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.transport.OpenSearchTransport;

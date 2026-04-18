@@ -1,4 +1,4 @@
-package com.testes.demos_aws;
+package com.comunidade.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

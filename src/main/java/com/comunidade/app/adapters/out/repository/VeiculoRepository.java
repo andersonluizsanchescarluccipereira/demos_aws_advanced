@@ -1,6 +1,7 @@
-package com.testes.demos_aws.repository;
+package com.comunidade.app.adapters.out.repository;
 
-import com.testes.demos_aws.model.Veiculo;
+import com.comunidade.app.application.core.domain.Veiculo;
+import com.comunidade.app.application.ports.out.VeiculoRepositoryPort;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch.core.GetResponse;
 import org.springframework.stereotype.Repository;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.io.IOException;
 
 @Repository
-public class VeiculoRepository {
+public class VeiculoRepository implements VeiculoRepositoryPort {
 
     private final OpenSearchClient client;
     private final String INDEX = "veiculos";

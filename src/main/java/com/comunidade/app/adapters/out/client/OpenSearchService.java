@@ -1,5 +1,6 @@
-package com.testes.demos_aws.service;
+package com.comunidade.app.adapters.out.client;
 
+import com.comunidade.app.application.ports.out.OpenSearchServicePort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.http.HttpEntity;
@@ -11,7 +12,7 @@ import java.util.Map;
 import org.springframework.web.client.HttpClientErrorException;
 
 @Service
-public class OpenSearchService {
+public class OpenSearchService implements OpenSearchServicePort {
 
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper = new ObjectMapper();

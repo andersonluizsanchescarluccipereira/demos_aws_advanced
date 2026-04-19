@@ -13,7 +13,7 @@ Uma aplicação Spring Boot para **gerenciamento e indexação de veículos** us
 
 ## 🛠️ Tecnologias
 
-- **Java 17** + **Spring Boot 3.5.13**
+- **Java 21** + **Spring Boot 3.5.13**
 - **OpenSearch 2.11.0** (indexação e busca)
 - **Redis 7.2** (locks distribuídos)
 - **Resilience4j** (circuit breaker e retry)
@@ -24,7 +24,7 @@ Uma aplicação Spring Boot para **gerenciamento e indexação de veículos** us
 ## 🚀 Como Subir
 
 ### 1. Pré-requisitos
-- Java 17+
+- Java 21+
 - Maven 3.8+
 - Docker + Docker Compose
 

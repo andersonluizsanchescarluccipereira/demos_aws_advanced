@@ -1,11 +1,14 @@
 package com.comunidade.app.application.core.domain;
 
+import java.util.List;
+
 public class BulkVeiculoResponse {
     private int totalProcessado;
     private int sucessos;
     private int erros;
     private String mensagem;
     private String status;
+    private List<String> batchStatuses;
 
     public BulkVeiculoResponse() {
     }
@@ -16,6 +19,15 @@ public class BulkVeiculoResponse {
         this.erros = erros;
         this.mensagem = mensagem;
         this.status = status;
+    }
+
+    public BulkVeiculoResponse(int totalProcessado, int sucessos, int erros, String mensagem, String status, List<String> batchStatuses) {
+        this.totalProcessado = totalProcessado;
+        this.sucessos = sucessos;
+        this.erros = erros;
+        this.mensagem = mensagem;
+        this.status = status;
+        this.batchStatuses = batchStatuses;
     }
 
     public int getTotalProcessado() {
@@ -57,5 +69,12 @@ public class BulkVeiculoResponse {
     public void setStatus(String status) {
         this.status = status;
     }
-}
 
+    public List<String> getBatchStatuses() {
+        return batchStatuses;
+    }
+
+    public void setBatchStatuses(List<String> batchStatuses) {
+        this.batchStatuses = batchStatuses;
+    }
+}

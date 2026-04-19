@@ -14,8 +14,18 @@ services:
       - opensearch-data:/usr/share/opensearch/data
     networks:
       - opensearch-net
+  redis:
+    image: redis:7.2-alpine
+    container_name: redis-demo
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - opensearch-net
 volumes:
   opensearch-data:
+  redis-data:
 networks:
   opensearch-net:
     driver: bridge

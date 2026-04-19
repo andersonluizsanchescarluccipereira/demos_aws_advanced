@@ -52,7 +52,6 @@ public class ResilienceConfig {
     public RetryRegistry retryRegistry() {
         RetryConfig bulkVeiculoRetry = RetryConfig.custom()
                 .maxAttempts(3)
-                .waitDuration(Duration.ofMillis(500))
                 .intervalFunction(io.github.resilience4j.core.IntervalFunction
                         .ofExponentialBackoff(500, 2))
                 .retryOnException(e -> !(e instanceof IllegalArgumentException))
@@ -60,7 +59,6 @@ public class ResilienceConfig {
 
         RetryConfig salvarVeiculoRetry = RetryConfig.custom()
                 .maxAttempts(5)
-                .waitDuration(Duration.ofMillis(300))
                 .intervalFunction(io.github.resilience4j.core.IntervalFunction
                         .ofExponentialBackoff(300, 1.5))
                 .retryOnException(e -> !(e instanceof IllegalArgumentException))
@@ -97,4 +95,3 @@ public class ResilienceConfig {
                 );
     }
 }
-

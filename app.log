@@ -1,0 +1,64 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< com.comunidade:demos_aws >----------------------
+[INFO] Building  0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.5.13:run (default-cli) > test-compile @ demos_aws >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ demos_aws ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ demos_aws ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ demos_aws ---
+[INFO] skip non existing resourceDirectory /Users/andersonluizpereira/java/demos_aws/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ demos_aws ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 6 source files with javac [debug parameters release 17] to target/test-classes
+[INFO] 
+[INFO] <<< spring-boot:3.5.13:run (default-cli) < test-compile @ demos_aws <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.5.13:run (default-cli) @ demos_aws ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.13)
+
+2026-04-18T17:51:42.950-03:00  INFO 5579 --- [demos_aws] [           main] com.comunidade.app.DemosAwsApplication   : Starting DemosAwsApplication using Java 17.0.12 with PID 5579 (/Users/andersonluizpereira/java/demos_aws/target/classes started by andersonluizpereira in /Users/andersonluizpereira/java/demos_aws)
+2026-04-18T17:51:42.956-03:00  INFO 5579 --- [demos_aws] [           main] com.comunidade.app.DemosAwsApplication   : No active profile set, falling back to 1 default profile: "default"
+2026-04-18T17:51:47.160-03:00  INFO 5579 --- [demos_aws] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-04-18T17:51:47.163-03:00  INFO 5579 --- [demos_aws] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-04-18T17:51:47.203-03:00  INFO 5579 --- [demos_aws] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22 ms. Found 0 Redis repository interfaces.
+2026-04-18T17:51:47.980-03:00  INFO 5579 --- [demos_aws] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-04-18T17:51:48.011-03:00  INFO 5579 --- [demos_aws] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-18T17:51:48.012-03:00  INFO 5579 --- [demos_aws] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.53]
+2026-04-18T17:51:48.126-03:00  INFO 5579 --- [demos_aws] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-04-18T17:51:48.128-03:00  INFO 5579 --- [demos_aws] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5079 ms
+2026-04-18T17:51:50.002-03:00  INFO 5579 --- [demos_aws] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-04-18T17:51:50.102-03:00  INFO 5579 --- [demos_aws] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-04-18T17:51:50.128-03:00  INFO 5579 --- [demos_aws] [           main] com.comunidade.app.DemosAwsApplication   : Started DemosAwsApplication in 7.869 seconds (process running for 8.505)
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  05:59 min
+[INFO] Finished at: 2026-04-18T17:57:34-03:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.5.13:run (default-cli) on project demos_aws: Process terminated with exit code: 137 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

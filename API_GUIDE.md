@@ -58,8 +58,8 @@ Content-Type: application/json
 curl -X POST http://localhost:8080/api/document/veiculos/1 \
   -H "Content-Type: application/json" \
   -d '{
-    "modelo": "Civic",
-    "marca": "Honda",
+    "modelo": "Spin",
+    "marca": "Crevrolet",
     "ano": 2022
   }'
 ```

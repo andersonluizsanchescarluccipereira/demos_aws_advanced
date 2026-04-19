@@ -86,6 +86,11 @@ docker-compose up -d
 
 ### 3. Fazer requisição bulk
 ```bash
+curl -X POST http://localhost:8081/veiculos/bulk \
+  -H "Content-Type: application/json" \
+  -d @bulk_example.json
+```
+```bash
 curl -X POST http://localhost:8080/veiculos/bulk \
   -H "Content-Type: application/json" \
   -d @bulk_example.json

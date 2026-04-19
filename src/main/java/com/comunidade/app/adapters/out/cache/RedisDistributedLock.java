@@ -1,6 +1,7 @@
 package com.comunidade.app.adapters.out.cache;
 
 import com.comunidade.app.application.ports.out.DistributedLockPort;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import java.util.Optional;
@@ -11,7 +12,7 @@ public class RedisDistributedLock implements DistributedLockPort {
 
     private final RedisTemplate<String, String> redisTemplate;
 
-    public RedisDistributedLock(RedisTemplate<String, String> redisTemplate) {
+    public RedisDistributedLock(@Qualifier("redisTemplate") RedisTemplate<String, String> redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
 
@@ -51,4 +52,3 @@ public class RedisDistributedLock implements DistributedLockPort {
         }
     }
 }
-

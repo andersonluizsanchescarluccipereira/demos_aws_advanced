@@ -42,6 +42,18 @@ public class ResilienceConfig {
         CircuitBreakerRegistry registry = CircuitBreakerRegistry.of(bulkVeiculoConfig);
         registry.addConfiguration("salvarVeiculo", salvarVeiculoConfig);
 
+        // Configuração para busca com filtros - mais permissiva pois são queries de leitura
+        CircuitBreakerConfig buscarVeiculosConfig = CircuitBreakerConfig.custom()
+                .failureRateThreshold(70.0f)
+                .slowCallRateThreshold(70.0f)
+                .slowCallDurationThreshold(Duration.ofSeconds(3))
+                .permittedNumberOfCallsInHalfOpenState(5)
+                .automaticTransitionFromOpenToHalfOpenEnabled(true)
+                .waitDurationInOpenState(Duration.ofSeconds(3))
+                .build();
+
+        registry.addConfiguration("buscarVeiculos", buscarVeiculosConfig);
+
         registry.getEventPublisher()
                 .onEntryAdded(event -> logCircuitBreakerStateChange(event));
         

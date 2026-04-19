@@ -1,462 +1,275 @@
-# 🚀 Demos AWS Advanced - Sistema de Gerenciamento de Veículos
+# 🚀 Demos AWS - Sistema de Gerenciamento de Veículos
 
-Uma aplicação Spring Boot robusta para gerenciamento e indexação de veículos usando **OpenSearch** com suporte a processamento em **bulk**, **locks distribuídos** com Redis e **resiliência** com Resilience4j.
+Uma aplicação Spring Boot para **gerenciamento e indexação de veículos** usando OpenSearch, com suporte a processamento em bulk de até 65.000 registros simultaneamente.
 
-## 📋 Funcionalidades
+## 📋 O que faz
 
-### ✅ Gerenciamento de Veículos
-- **Cadastro individual** de veículos
-- **Busca por ID** de veículos indexados
-- **Processamento em bulk** de múltiplos veículos com tratamento de erros robusto
-- Suporte a batches automáticos para otimização de performance
+- ✅ **Cadastrar veículos individualmente** no OpenSearch
+- ✅ **Buscar veículos por ID**
+- ✅ **Processar milhares de veículos em bulk** (até 65.000 registros)
+- ✅ **Locks distribuídos** com Redis para evitar duplicação
+- ✅ **Resiliência** com Circuit Breaker e Retry automático
+- ✅ **Arquitetura Hexagonal** com separação clara de responsabilidades
 
-### ✅ Integração com OpenSearch
-- **Indexação automática** de documentos
-- **Busca avançada** com queries complexas
-- **Health check** do cluster OpenSearch
-- **Criação dinâmica** de índices com mappings customizados
+## 🛠️ Tecnologias
 
-### ✅ Resiliência e Confiabilidade
-- **Circuit Breaker** para proteção contra falhas em cascata
-- **Retry automático** com backoff exponencial
-- **Locks distribuídos** via Redis para evitar duplicação em múltiplos pods
-- **Processamento paralelo** de batches com executors configurados
-
-### ✅ Arquitetura
-- **Hexagonal Architecture** com separação clara de camadas
-- **Portas e Adaptadores** para baixo acoplamento
-- **Configuração centralizada** de resiliência e timeouts
+- **Java 17** + **Spring Boot 3.5.13**
+- **OpenSearch 2.11.0** (indexação e busca)
+- **Redis 7.2** (locks distribuídos)
+- **Resilience4j** (circuit breaker e retry)
+- **Docker** (containerização)
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## 🚀 Como Subir
 
-| Tecnologia | Versão | Propósito |
-|------------|--------|----------|
-| **Java** | 17 | Linguagem de programação |
-| **Spring Boot** | 3.5.13 | Framework web |
-| **OpenSearch** | 2.11.0 | Search engine e indexação |
-| **Redis** | 7.2 | Locks distribuídos |
-| **Resilience4j** | 2.1.0 | Circuit breaker e retry |
-| **Maven** | 4.0.0 | Gerenciador de dependências |
-| **Docker** | - | Containerização de serviços |
+### 1. Pré-requisitos
+- Java 17+
+- Maven 3.8+
+- Docker + Docker Compose
 
----
-
-## 🚀 Como Subir a Aplicação
-
-### Pré-requisitos
-
-- **Java 17+** instalado
-- **Maven 3.8+** instalado
-- **Docker e Docker Compose** instalados
-- **Git** (opcional)
-
-### Passo 1: Clonar o Repositório
-
-```bash
-cd ~/java
-git clone <seu-repositorio> demos_aws
-cd demos_aws
-```
-
-Ou se já estiver no diretório correto:
-
+### 2. Iniciar Serviços
 ```bash
 cd /Users/andersonluizpereira/java/demos_aws
-```
 
-### Passo 2: Iniciar os Serviços com Docker Compose
-
-Suba o **OpenSearch** e **Redis** usando Docker Compose:
-
-```bash
+# Iniciar OpenSearch e Redis
 docker-compose up -d
 ```
 
-Isso irá iniciar:
-- **OpenSearch** na porta `9200` (http://localhost:9200)
-- **Redis** na porta `6379` (localhost:6379)
-
-Verifique se os containers estão rodando:
-
+### 3. Compilar e Executar
 ```bash
-docker-compose ps
-```
-
-### Passo 3: Compilar o Projeto
-
-```bash
+# Compilar
 ./mvnw clean compile
-```
 
-Ou com Maven instalado globalmente:
-
-```bash
-mvn clean compile
-```
-
-### Passo 4: Executar a Aplicação
-
-**Opção A: Via Maven**
-
-```bash
+# Executar
 ./mvnw spring-boot:run
 ```
 
-**Opção B: Build e Execute JAR**
-
+### 4. Verificar
 ```bash
-./mvnw clean package -DskipTests
-java -jar target/demos_aws-0.0.1-SNAPSHOT.jar
-```
-
-A aplicação estará disponível em: **http://localhost:8080**
-
-### Passo 5: Verificar a Saúde da Aplicação
-
-```bash
+# Health check
 curl http://localhost:8080/api/health
+
+# Stats da aplicação
+curl http://localhost:8080/api/stats
 ```
 
-Resposta esperada (em JSON):
-
-```json
-{
-  "status": "green",
-  "number_of_nodes": 1,
-  "number_of_data_nodes": 1,
-  "active_primary_shards": 0,
-  "active_shards": 0,
-  "relocating_shards": 0,
-  "initializing_shards": 0,
-  "unassigned_shards": 0,
-  "delayed_unassigned_shards": 0,
-  "number_of_pending_tasks": 0,
-  "number_of_in_flight_fetch": 0,
-  "timed_out": false,
-  "task_max_waiting_in_millis": 0,
-  "active_shards_percent_as_number": 100.0
-}
-```
+**✅ Aplicação iniciada com sucesso!**
 
 ---
 
-## 📡 Endpoints da API
+## 📡 API Endpoints
 
-### Gerenciamento de Veículos
+### Veículos
 
-#### 1. **Cadastrar Veículo Individual**
+#### Cadastrar veículo individual
 ```bash
 POST /veiculos
 Content-Type: application/json
 
 {
-  "id": "veiculo-001",
-  "marca": "Toyota",
-  "modelo": "Corolla",
-  "ano": 2024,
-  "placa": "ABC1234"
+  "id": "1",
+  "modelo": "Civic",
+  "marca": "Honda",
+  "ano": 2024
 }
 ```
 
-**Resposta:** `200 OK`
-
-#### 2. **Buscar Veículo por ID**
+#### Buscar veículo por ID
 ```bash
 GET /veiculos/{id}
 ```
 
-**Exemplo:**
-```bash
-curl http://localhost:8080/veiculos/veiculo-001
-```
-
-**Resposta:**
-```json
-{
-  "id": "veiculo-001",
-  "marca": "Toyota",
-  "modelo": "Corolla",
-  "ano": 2024,
-  "placa": "ABC1234"
-}
-```
-
-#### 3. **Cadastrar Veículos em Bulk**
+#### Processar bulk (até 65.000 registros)
 ```bash
 POST /veiculos/bulk
 Content-Type: application/json
 
 {
-  "requestId": "bulk-001",
+  "requestId": "bulk-123",
   "veiculos": [
-    {
-      "id": "veiculo-001",
-      "marca": "Toyota",
-      "modelo": "Corolla",
-      "ano": 2024,
-      "placa": "ABC1234"
-    },
-    {
-      "id": "veiculo-002",
-      "marca": "Honda",
-      "modelo": "Civic",
-      "ano": 2023,
-      "placa": "XYZ5678"
-    }
+    {"id": "1", "modelo": "Civic", "marca": "Honda", "ano": 2024},
+    {"id": "2", "modelo": "Corolla", "marca": "Toyota", "ano": 2023}
   ]
 }
+```
+
+#### 🔍 **Buscar com Filtros e Paginação (NOVO)**
+```bash
+GET /veiculos/search?marca=Honda&ano=2024&modelo=Civic&page=1&pageSize=10
+```
+
+**Exemplos de uso com curl:**
+
+```bash
+# Buscar Honda
+curl -s "http://localhost:8080/veiculos/search?marca=Honda&page=1&pageSize=10" | jq '.'
+
+# Buscar Toyota ano 2024
+curl -s "http://localhost:8080/veiculos/search?marca=Toyota&ano=2024&page=1&pageSize=10" | jq '.'
+
+# Buscar modelo Civic
+curl -s "http://localhost:8080/veiculos/search?modelo=Civic&page=1&pageSize=10" | jq '.'
+
+# Listar tudo (sem filtros)
+curl -s "http://localhost:8080/veiculos/search?page=1&pageSize=50" | jq '.'
+
+# Segunda página
+curl -s "http://localhost:8080/veiculos/search?marca=Honda&page=2&pageSize=10" | jq '.'
+```
+
+**Parâmetros:**
+- `marca` (opcional) - Filtrar por marca
+- `ano` (opcional) - Filtrar por ano exato
+- `modelo` (opcional) - Filtrar por modelo
+- `page` (padrão: 1) - Número da página
+- `pageSize` (padrão: 10, máx: 100) - Registros por página
+
+**Resposta:**
+```json
+{
+  "veiculos": [
+    {
+      "id": "1",
+      "modelo": "Civic",
+      "marca": "Honda",
+      "ano": 2024
+    }
+  ],
+  "total": 500,
+  "page": 1,
+  "pageSize": 10,
+  "totalPages": 50
+}
+```
+
+**Performance:**
+- ✅ Indexed queries com OpenSearch
+- ✅ Paginação eficiente (from/size)
+- ✅ Circuit Breaker para resiliência
+- ✅ Retry automático em caso de falha
+
+### OpenSearch
+
+#### Health check
+```bash
+GET /api/health
+```
+
+#### Estatísticas e verificação de registros
+```bash
+GET /api/stats
 ```
 
 **Resposta:**
 ```json
 {
-  "totalProcessado": 2,
-  "sucessos": 2,
-  "erros": 0,
-  "mensagem": "Processamento concluído com sucesso",
-  "status": "COMPLETED",
-  "batchStatuses": [
-    "Batch 1: 2 sucessos, 0 erros"
-  ]
-}
-```
-
----
-
-### OpenSearch / Indexação
-
-#### 1. **Verificar Saúde do OpenSearch**
-```bash
-GET /api/health
-```
-
-#### 2. **Criar Índice**
-```bash
-POST /api/index/{indexName}
-Content-Type: application/json
-
-{
-  "mappings": {
-    "properties": {
-      "marca": { "type": "keyword" },
-      "modelo": { "type": "text" },
-      "ano": { "type": "integer" },
-      "placa": { "type": "keyword" }
-    }
+  "cluster_health": {...},
+  "bulk_verification": {
+    "total_documents_indexed": 65000,
+    "unique_vehicle_ids": 65000,
+    "has_duplicates": false,
+    "expected_records": 65000,
+    "test_successful": true,
+    "duplicates_count": 0
+  },
+  "test_files": {
+    "bulk_data": "bulk_65000.json",
+    "test_script": "test_bulk.sh"
   }
 }
 ```
 
-**Exemplo:**
+#### Buscar todos os documentos indexados
 ```bash
-curl -X POST http://localhost:8080/api/index/veiculos \
-  -H "Content-Type: application/json" \
-  -d '{
-    "mappings": {
-      "properties": {
-        "marca": { "type": "keyword" },
-        "modelo": { "type": "text" },
-        "ano": { "type": "integer" },
-        "placa": { "type": "keyword" }
-      }
-    }
-  }'
-```
-
-#### 3. **Indexar Documento**
-```bash
-POST /api/document/{indexName}/{docId}
-Content-Type: application/json
-
-{
-  "marca": "Toyota",
-  "modelo": "Corolla",
-  "ano": 2024,
-  "placa": "ABC1234"
-}
-```
-
-#### 4. **Buscar Documentos**
-```bash
-POST /api/search/{indexName}
+POST /api/search/veiculos
 Content-Type: application/json
 
 {
   "query": {
-    "match": {
-      "marca": "Toyota"
-    }
+    "match_all": {}
   }
 }
 ```
 
 ---
 
-## 🔧 Configurações Importantes
+## 🧪 Teste com 65.000 Registros
 
-### application.properties
-
-```properties
-spring.application.name=demos_aws
-server.port=8080
+### 1. Executar teste automatizado
+```bash
+cd /Users/andersonluizpereira/java/demos_aws
+./test_bulk.sh
 ```
 
-### Conexão com Serviços
+### 2. Ou manualmente
+```bash
+curl -X POST http://localhost:8080/veiculos/bulk \
+  -H "Content-Type: application/json" \
+  -d @bulk_65000.json
+```
 
+### 3. Verificar se todos os registros foram inseridos
+```bash
+# Ver estatísticas
+curl http://localhost:8080/api/stats
+
+# Buscar todos os documentos (deve retornar 65.000)
+curl -X POST http://localhost:8080/api/search/veiculos \
+  -H "Content-Type: application/json" \
+  -d '{"query": {"match_all": {}}}' | jq '.hits.total.value'
+```
+
+### Resultado esperado:
+- **Total processado:** 65.000
+- **Sucessos:** 65.000
+- **Erros:** 0
+- **Status:** COMPLETED
+
+---
+
+## 📊 Arquivos de Teste
+
+- `bulk_65000.json` - 65.000 registros de teste (6.3 MB)
+- `test_bulk.sh` - Script automatizado de teste
+
+---
+
+## 🔧 Configuração
+
+- **Aplicação:** http://localhost:8080
 - **OpenSearch:** http://localhost:9200
 - **Redis:** localhost:6379
-- **Spring Boot App:** http://localhost:8080
-
-### Timeouts
-
-- **Connection Timeout:** 30 segundos
-- **Response Timeout:** 30 segundos
-- **Lock Timeout:** 300 segundos (5 minutos)
-
----
-
-## 📊 Arquitetura do Projeto
-
-```
-src/main/java/com/comunidade/app/
-├── adapters/
-│   ├── in/
-│   │   └── controller/          # REST Controllers
-│   │       ├── VeiculoController.java
-│   │       └── OpenSearchController.java
-│   └── out/
-│       └── client/              # Integrações externas
-│           └── OpenSearchService.java
-├── application/
-│   ├── core/
-│   │   ├── domain/              # Entidades de domínio
-│   │   │   ├── Veiculo.java
-│   │   │   ├── BulkVeiculoRequest.java
-│   │   │   └── BulkVeiculoResponse.java
-│   │   └── usecase/             # Casos de uso
-│   │       ├── VeiculoServiceUseCase.java
-│   │       └── BulkVeiculoServiceUseCase.java
-│   └── ports/
-│       ├── in/                  # Interfaces de entrada
-│       └── out/                 # Interfaces de saída
-├── config/                      # Configurações do Spring
-│   ├── OpenSearchConfig.java
-│   ├── ResilienceConfig.java
-│   └── RestTemplateConfig.java
-└── DemosAwsApplication.java     # Main class
-```
-
----
-
-## 🐛 Troubleshooting
-
-### Problema: OpenSearch não está acessível
-
-```
-Failed to check OpenSearch health: Connection refused
-```
-
-**Solução:**
-```bash
-# Verifique se o container está rodando
-docker-compose ps
-
-# Reinicie o docker-compose
-docker-compose restart opensearch
-```
-
-### Problema: Porta 9200 já está em uso
-
-**Solução:**
-```bash
-# Encontre qual processo está usando a porta
-lsof -i :9200
-
-# Ou force parar todos os containers
-docker-compose down
-docker-compose up -d
-```
-
-### Problema: Redis não está conectando
-
-**Solução:**
-```bash
-# Verifique a conectividade
-redis-cli -h localhost -p 6379 ping
-
-# Reinicie o Redis
-docker-compose restart redis
-```
-
-### Problema: Build Maven falha
-
-**Solução:**
-```bash
-# Limpe o cache Maven
-./mvnw clean
-
-# Execute novamente
-./mvnw clean compile
-```
+- **Timeouts:** 30 segundos
+- **Batch size:** 500 registros
+- **Thread pool:** 4 threads
 
 ---
 
 ## 📝 Logs
 
-Os logs da aplicação são salvos em:
-
-```
-./app.log
-```
-
-Para ver logs em tempo real:
-
 ```bash
 tail -f app.log
 ```
 
----
-
-## 🚦 Status da Aplicação
-
-Após iniciar, verifique:
-
-1. **OpenSearch Health:** `curl http://localhost:9200/_cluster/health`
-2. **Redis Connection:** `redis-cli ping` (deve retornar PONG)
-3. **App Health:** `curl http://localhost:8080/api/health`
+Procure por:
+```
+INFO  Bulk processado: Total=65000, Sucessos=65000, Erros=0
+```
 
 ---
 
-## 📚 Documentação Adicional
+## 🏗️ Arquitetura
 
-- [API_GUIDE.md](./API_GUIDE.md) - Guia detalhado de endpoints
-- [BULK_GUIDE.md](./BULK_GUIDE.md) - Guia de processamento em bulk
-- [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md) - Guia de deploy em produção
-- [IMPLEMENTACAO_BULK.md](./IMPLEMENTACAO_BULK.md) - Detalhes técnicos de bulk
-
----
-
-## 👨‍💻 Desenvolvedor
-
-**Sistema desenvolvido com Spring Boot Hexagonal Architecture**
-
-Mantém-se atualizado com as melhores práticas de:
-- ✅ Arquitetura em camadas
-- ✅ Padrão Ports & Adapters
-- ✅ Resiliência com Resilience4j
-- ✅ Processamento assíncrono e paralelo
-- ✅ Integração com OpenSearch
-- ✅ Locks distribuídos com Redis
-
----
-
-## 📄 Licença
-
-Este projeto é de código aberto. Consulte a seção de licença para mais informações.
+```
+├── Controllers (REST API)
+├── Use Cases (Regras de negócio)
+├── Ports (Interfaces)
+├── Adapters (Integrações externas)
+├── Config (Spring configurations)
+└── Domain (Entidades)
+```
 
 ---
 
 **Última atualização:** Abril 2026
-
